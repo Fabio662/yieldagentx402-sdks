@@ -1,0 +1,32 @@
+{
+  "name": "yieldagentx402-verify",
+  "version": "1.0.0",
+  "description": "Zero-dependency verifier for YieldAgentX402 receipts and webhook signatures. Works in browser, Node 18+, Cloudflare Workers, and Deno.",
+  "type": "module",
+  "main": "./src/index.js",
+  "module": "./src/index.js",
+  "types": "./src/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./src/index.d.ts",
+      "import": "./src/index.js"
+    }
+  },
+  "files": ["src", "README.md", "LICENSE"],
+  "scripts": {
+    "test": "node --test test/*.test.js"
+  },
+  "keywords": [
+    "yieldagentx402","yax","mcp","x402","receipt","verify","hmac","filecoin","webhook","agent-payments"
+  ],
+  "author": "YieldAgentX402",
+  "license": "MIT",
+  "homepage": "https://yieldagentx402.app/mcp-server",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Fabio662/yieldagentx402-sdks.git",
+    "directory": "verify-lib"
+  },
+  "publishConfig": { "access": "public" },
+  "engines": { "node": ">=18" }
+}

@@ -1,0 +1,116 @@
+# agentx402-mcp-server
+
+> **Custody-free, policy-gated, receipt-backed execution layer for AI agents.**
+> Thin stdio wrapper for the live YieldAgentX402 MCP endpoint — **16 tools, 18 chains, signed receipts on every call.**
+
+[Docs](https://yieldagentx402.app/mcp-server) · [Try without signup](#try-it-now-no-signup) · [Get API Key](https://yieldagentx402.app/apply) · [What is x402?](https://yieldagentx402.app/what-is-x402)
+
+---
+
+## Try it now (no signup)
+
+The `yax_get_capabilities` tool is **public** — you can discover everything before you ever sign up.
+
+```bash
+curl -X POST https://api.yieldagentx402.app/mcp \
+  -H "Content-Type: application/json" \
+  -d '{"jsonrpc":"2.0","id":1,"method":"tools/call",
+       "params":{"name":"yax_get_capabilities","arguments":{}}}'
+```
+
+Returns: all 16 tools, 4 differentiators, security posture, supported chains, and live infra status.
+
+---
+
+## Install (1 minute)
+
+Works with **Claude Desktop, Claude Code, Cursor, Windsurf, Zed,** and any MCP 2025-03-26 stdio client.
+
+```json
+{
+  "mcpServers": {
+    "yieldagentx402": {
+      "command": "npx",
+      "args": ["-y", "agentx402-mcp-server"],
+      "env": {
+        "YAX_API_KEY": "yax_live_...",
+        "YAX_AGENT_ID": "optional-agent-id"
+      }
+    }
+  }
+}
+```
+
+Get an API key at **https://yieldagentx402.app/apply** (or call `POST /api/agent-onboard` for instant demo credentials).
+
+---
+
+## 16 tools, 4 categories
+
+| Category | Tools |
+|---|---|
+| **Discovery** *(public, no auth)* | `yax_get_capabilities` |
+| **Wallet & custody** | `yax_get_wallet_status` — returns Shade Agent MPC addresses on EVM + BTC + Starknet |
+| **Execution** | `yax_run_secure_workflow`, `yax_process_x402_payment` |
+| **Policy & governance** | `yax_check_policy`, `yax_run_compliance_monitor`, `yax_get_attestation` |
+| **Receipts & audit** | `yax_get_receipt`, `yax_verify_receipt`, `yax_list_runs` |
+| **Workflows** | `yax_score_leads`, `yax_enrich_lead_data`, `yax_build_email_sequence`, `yax_monitor_churn_risk`, `yax_collect_ar_invoices`, `yax_forecast_cash_flow` |
+
+Every tool call is:
+- **ShadeGuard-policy-checked** before execution
+- **TEE-attested** (Intel TDX, NEAR AI Cloud — `mrEnclave` verifiable at [`/api/tee/report`](https://api.yieldagentx402.app/api/tee/report))
+- **Receipt-backed** (HMAC-SHA256 over canonical JSON)
+- **Filecoin + BTFS anchored** when uploads succeed
+- **Routed across 18 networks** including Base, Ethereum, Bitcoin (native), Starknet, NEAR, Solana, Stacks, BNB, Rootstock, Filecoin, Aptos, Sui, TON, Tron, XRPL, Stellar, Algorand
+
+## Custody-free wallet — one MPC key, three chains
+
+The Shade Agent (NEAR chain signatures) derives payment addresses **on demand** — no private keys held anywhere.
+
+| Chain | Address | Mode |
+|---|---|---|
+| EVM (Base/Eth) | `0x6905D04C3655625F6171f7b1e801a9325B1Fa1e8` | MPC-signed |
+| Bitcoin (P2WPKH) | `bc1qcd8ljsj7x0rq3sw7drrt7ragqmmt3tfsfxs6gy` | MPC-signed |
+| Starknet | `0x003a4e08…570906a21` | Stark curve, preset |
+
+Live manifest: https://shade-agent-worker.cryptoblac.workers.dev/api/wallet
+
+---
+
+## Configuration
+
+| Env var | Required | Default |
+|---|---|---|
+| `YAX_API_KEY` | Yes (for non-public tools) | — |
+| `YAX_AGENT_ID` | No | — |
+| `YAX_MCP_ENDPOINT` | No | `https://api.yieldagentx402.app/mcp` |
+| `YAX_API_BASE` | No | (sets endpoint if `YAX_MCP_ENDPOINT` unset) |
+
+---
+
+## Registry
+
+- **npm:** `agentx402-mcp-server` (this package)
+- **Smithery:** [`fabianjefferson2/agentx402-mcp-server`](https://smithery.ai/servers/fabianjefferson2/agentx402-mcp-server) — 16 tools, live gateway
+- **Remote endpoint:** `https://api.yieldagentx402.app/mcp` (Streamable HTTP, MCP 2025-03-26)
+- **x402scan:** [server/ddec8170…](https://www.x402scan.com/server/ddec8170-b8be-406e-98bb-b67a32c8a4c0) — 34 resources, live transactions
+- **ERC-8004 on Base:** `#21702` (separate from Stacks #32 / TRON #1)
+- **Status:** [api.yieldagentx402.app/api/status](https://api.yieldagentx402.app/api/status)
+
+---
+
+## Development
+
+```bash
+npm install
+npm run build
+npm start
+```
+
+The package is intentionally thin. Tool discovery and tool calls are provided by the public YieldAgentX402 MCP endpoint, so the local package stays truthful as the hosted server evolves.
+
+---
+
+## License
+
+MIT

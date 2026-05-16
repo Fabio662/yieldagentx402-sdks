@@ -1,0 +1,8 @@
+# Python build artifacts — never commit these
+dist/
+build/
+*.egg-info/
+__pycache__/
+*.pyc
+.venv/
+.pytest_cache/

@@ -1,0 +1,65 @@
+{
+  "name": "agentx402-mcp-server",
+  "version": "1.0.2",
+  "mcpName": "io.github.Fabio662/yieldagentx402",
+  "description": "Custody-free, policy-gated, receipt-backed execution layer for AI agents — 16 MCP tools, 18 chains (BTC + Starknet + EVM), signed receipts, Filecoin-anchored proof. Public discovery: no signup needed to inspect capabilities.",
+  "keywords": [
+    "mcp",
+    "model-context-protocol",
+    "claude",
+    "ai-agent",
+    "x402",
+    "agent-payments",
+    "receipt",
+    "filecoin",
+    "policy",
+    "yieldagentx402"
+  ],
+  "homepage": "https://yieldagentx402.app/mcp-server",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Fabio662/yieldagentx402-sdks.git",
+    "directory": "mcp-server"
+  },
+  "license": "MIT",
+  "author": "YieldAgentX402",
+  "type": "module",
+  "publishConfig": {
+    "access": "public"
+  },
+  "main": "dist/index.js",
+  "bin": {
+    "yieldagentx402-mcp": "dist/index.js"
+  },
+  "exports": {
+    ".": {
+      "types": "./dist/yieldagent-client.d.ts",
+      "import": "./dist/yieldagent-client.js"
+    },
+    "./config": {
+      "types": "./dist/config.d.ts",
+      "import": "./dist/config.js"
+    }
+  },
+  "files": [
+    "dist",
+    "README.md",
+    "server.json"
+  ],
+  "scripts": {
+    "build": "tsc",
+    "start": "node dist/index.js",
+    "dev": "tsx src/index.ts"
+  },
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "^1.29.0"
+  },
+  "devDependencies": {
+    "@types/node": "^20.0.0",
+    "tsx": "^4.0.0",
+    "typescript": "^5.0.0"
+  },
+  "engines": {
+    "node": ">=18"
+  }
+}

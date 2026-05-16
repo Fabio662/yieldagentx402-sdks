@@ -1,0 +1,43 @@
+[build-system]
+requires = ["hatchling>=1.25"]
+build-backend = "hatchling.build"
+
+[project]
+name = "crewai-yieldagentx402-tools"
+version = "1.0.0"
+description = "CrewAI tools for YieldAgentX402 — custody-free, policy-gated, receipt-backed execution across 18 chains. Includes policy dry-run, x402 payment, secure workflow, receipt verification, and Shade Agent MPC wallet status."
+readme = "README.md"
+requires-python = ">=3.9"
+license = { text = "MIT" }
+authors = [{ name = "YieldAgentX402", email = "security@yieldagentx402.app" }]
+keywords = ["crewai", "yieldagentx402", "x402", "ai-agents", "receipts", "policy", "mcp", "filecoin", "shade-agent", "bitcoin", "starknet"]
+classifiers = [
+  "Development Status :: 5 - Production/Stable",
+  "Intended Audience :: Developers",
+  "License :: OSI Approved :: MIT License",
+  "Programming Language :: Python :: 3",
+  "Programming Language :: Python :: 3.9",
+  "Programming Language :: Python :: 3.10",
+  "Programming Language :: Python :: 3.11",
+  "Programming Language :: Python :: 3.12",
+  "Topic :: Software Development :: Libraries :: Python Modules",
+  "Topic :: Office/Business :: Financial",
+]
+dependencies = [
+  "crewai>=0.98.0",
+  "pydantic>=2.0",
+  "requests>=2.31",
+]
+
+[project.urls]
+Homepage      = "https://yieldagentx402.app"
+Documentation = "https://yieldagentx402.app/mcp-server"
+Discovery     = "https://yieldagentx402.app/.well-known/mcp.json"
+Repository    = "https://github.com/Fabio662/yieldagentx402-sdks"
+Issues        = "https://github.com/Fabio662/yieldagentx402-sdks/issues"
+"Try It Now"  = "https://api.yieldagentx402.app/api/agent-onboard"
+"Instant Test Key" = "https://api.yieldagentx402.app/api/apply"
+Privacy       = "https://yieldagentx402.app/privacy"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/crewai_yieldagentx402_tools"]
