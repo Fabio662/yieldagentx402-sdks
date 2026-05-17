@@ -1,0 +1,46 @@
+{
+  "name": "yieldagentx402",
+  "version": "1.0.0",
+  "description": "Typed TypeScript SDK for YieldAgentX402 — custody-free, policy-gated, receipt-backed agent execution across 18 chains. Wraps the MCP gateway with first-class types for all 16 tools, idempotency, webhook verification, and Shade Agent wallet helpers. Zero runtime deps (uses fetch + WebCrypto).",
+  "type": "module",
+  "main": "./dist/index.js",
+  "module": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js"
+    },
+    "./types": {
+      "types": "./dist/types.d.ts",
+      "import": "./dist/types.js"
+    }
+  },
+  "files": ["dist", "README.md", "LICENSE"],
+  "scripts": {
+    "build": "tsc",
+    "test": "node --test test/*.test.js",
+    "prepublishOnly": "npm run build"
+  },
+  "keywords": [
+    "yieldagentx402","yax","mcp","x402","agent-payments","custody-free","shade-agent",
+    "bitcoin","starknet","filecoin","tee","receipt","sdk","typescript","ai-agents"
+  ],
+  "author": "YieldAgentX402",
+  "license": "MIT",
+  "homepage": "https://yieldagentx402.app/mcp-server",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Fabio662/yieldagentx402-sdks.git",
+    "directory": "sdk-ts"
+  },
+  "bugs": {
+    "url": "https://github.com/Fabio662/yieldagentx402-sdks/issues"
+  },
+  "publishConfig": { "access": "public" },
+  "engines": { "node": ">=18" },
+  "devDependencies": {
+    "@types/node": "^20.0.0",
+    "typescript": "^5.0.0"
+  }
+}
