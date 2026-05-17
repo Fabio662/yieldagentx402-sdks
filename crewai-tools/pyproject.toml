@@ -4,7 +4,7 @@ build-backend = "hatchling.build"
 
 [project]
 name = "crewai-yieldagentx402-tools"
-version = "1.0.0"
+version = "1.0.1"
 description = "CrewAI tools for YieldAgentX402 — custody-free, policy-gated, receipt-backed execution across 18 chains. Includes policy dry-run, x402 payment, secure workflow, receipt verification, and Shade Agent MPC wallet status."
 readme = "README.md"
 requires-python = ">=3.9"

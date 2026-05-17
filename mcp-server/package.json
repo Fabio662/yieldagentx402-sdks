@@ -1,6 +1,6 @@
 {
   "name": "agentx402-mcp-server",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "mcpName": "io.github.Fabio662/yieldagentx402",
   "description": "Custody-free, policy-gated, receipt-backed execution layer for AI agents — 16 MCP tools, 18 chains (BTC + Starknet + EVM), signed receipts, Filecoin-anchored proof. Public discovery: no signup needed to inspect capabilities.",
   "keywords": [

@@ -1,6 +1,6 @@
 {
   "name": "yieldagentx402-verify",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Zero-dependency verifier for YieldAgentX402 receipts and webhook signatures. Works in browser, Node 18+, Cloudflare Workers, and Deno.",
   "type": "module",
   "main": "./src/index.js",
