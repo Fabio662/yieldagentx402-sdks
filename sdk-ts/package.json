@@ -16,15 +16,32 @@
       "import": "./dist/types.js"
     }
   },
-  "files": ["dist", "README.md", "LICENSE"],
+  "files": [
+    "dist",
+    "README.md",
+    "LICENSE"
+  ],
   "scripts": {
     "build": "tsc",
     "test": "node --test test/*.test.js",
     "prepublishOnly": "npm run build"
   },
   "keywords": [
-    "yieldagentx402","yax","mcp","x402","agent-payments","custody-free","shade-agent",
-    "bitcoin","starknet","filecoin","tee","receipt","sdk","typescript","ai-agents"
+    "yieldagentx402",
+    "yax",
+    "mcp",
+    "x402",
+    "agent-payments",
+    "custody-free",
+    "shade-agent",
+    "bitcoin",
+    "starknet",
+    "filecoin",
+    "tee",
+    "receipt",
+    "sdk",
+    "typescript",
+    "ai-agents"
   ],
   "author": "YieldAgentX402",
   "license": "MIT",
@@ -37,8 +54,12 @@
   "bugs": {
     "url": "https://github.com/Fabio662/yieldagentx402-sdks/issues"
   },
-  "publishConfig": { "access": "public" },
-  "engines": { "node": ">=18" },
+  "publishConfig": {
+    "access": "public"
+  },
+  "engines": {
+    "node": ">=18"
+  },
   "devDependencies": {
     "@types/node": "^20.0.0",
     "typescript": "^5.0.0"
