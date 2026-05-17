@@ -69,6 +69,25 @@ const verified = await yax.verifyReceipt(tx.run_id!);
 console.log(verified);  // { verified: true, signature_ok: true, anchor_exists: true, ... }
 ```
 
+## Stream workflow progress (SSE, no polling)
+
+For long-running workflows, get real-time progress events instead of polling:
+
+```ts
+for await (const ev of yax.streamSecureWorkflow({
+  intent: "Pay 50 USDC to 0xMerchant on Base",
+  action_type: "payment",
+})) {
+  if (ev.type === "progress") console.log(ev.stage, ev.run_id ?? "");
+  if (ev.type === "result")   console.log("✓ done:", ev.result.run_id, ev.result.receipt_signature);
+  if (ev.type === "error")    console.error("✗", ev.message);
+}
+```
+
+Stages: `queued → policy_checking → policy_approved → tee_executing → signing → anchoring → completed`.
+
+Uses MCP 2025-03-26 Streamable HTTP under the hood (`Accept: text/event-stream`).
+
 ## Webhook callbacks (kill polling)
 
 Provide a `webhook_url` and YAX POSTs the signed receipt when the run completes:

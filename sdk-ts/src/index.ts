@@ -196,6 +196,93 @@ export class YieldAgentX402 {
   }
 
   /**
+   * Stream a secure workflow with progress events.
+   *
+   * Yields each event from the gateway in real time:
+   *   { type: "progress", stage: "queued" | "policy_checking" | "policy_approved" |
+   *                              "tee_executing" | "signing" | "anchoring" | "completed",
+   *     run_id?, filecoin_cid?, tee_attestation?, timestamp }
+   *   { type: "result", result: RunSecureWorkflowResponse }
+   *   { type: "error", code, message }
+   *
+   * Backed by MCP 2025-03-26 Streamable HTTP (Accept: text/event-stream).
+   *
+   * @example
+   *   for await (const ev of yax.streamSecureWorkflow({ intent: "...", action_type: "payment" })) {
+   *     if (ev.type === "progress") console.log("stage:", ev.stage);
+   *     if (ev.type === "result")   console.log("done:", ev.result.run_id);
+   *   }
+   */
+  async *streamSecureWorkflow(args: RunSecureWorkflowArgs): AsyncGenerator<
+    | { type: "progress"; stage: string; run_id?: string; filecoin_cid?: string | null; tee_attestation?: string | null; workflow_id?: string; timestamp: string }
+    | { type: "result"; result: RunSecureWorkflowResponse }
+    | { type: "error"; code: number | string; message: string },
+    void,
+    unknown
+  > {
+    const body: JsonRpcEnvelope = {
+      jsonrpc: "2.0",
+      id: ++this._id,
+      method: "tools/call",
+      params: { name: "yax_run_secure_workflow", arguments: args as unknown as Record<string, unknown> },
+    };
+    const headers: Record<string, string> = {
+      "Content-Type": "application/json",
+      "Accept": "text/event-stream",
+    };
+    if (this.apiKey)  headers["Authorization"] = `Bearer ${this.apiKey}`;
+    if (this.agentId) headers["X-Agent-ID"] = this.agentId;
+
+    const res = await fetch(this.endpoint, {
+      ...this._fetchInit,
+      method: "POST",
+      headers,
+      body: JSON.stringify(body),
+    });
+    if (!res.ok || !res.body) {
+      yield { type: "error", code: res.status, message: `HTTP ${res.status}` };
+      return;
+    }
+    const reader = res.body.getReader();
+    const decoder = new TextDecoder();
+    let buf = "";
+    let currentEvent = "message";
+    try {
+      while (true) {
+        const { value, done } = await reader.read();
+        if (done) break;
+        buf += decoder.decode(value, { stream: true });
+        let idx: number;
+        // Process complete SSE frames separated by double newline.
+        while ((idx = buf.indexOf("\n\n")) !== -1) {
+          const frame = buf.slice(0, idx);
+          buf = buf.slice(idx + 2);
+          let dataLine = "";
+          currentEvent = "message";
+          for (const line of frame.split("\n")) {
+            if (line.startsWith("event:")) currentEvent = line.slice(6).trim();
+            else if (line.startsWith("data:")) dataLine += line.slice(5).trim();
+          }
+          if (!dataLine) continue;
+          let payload: any;
+          try { payload = JSON.parse(dataLine); } catch { continue; }
+          if (currentEvent === "progress" && payload?.params) {
+            yield { type: "progress", ...payload.params };
+          } else if (payload?.result) {
+            const inner = payload.result?.structuredContent
+              ?? (() => { try { return JSON.parse(payload.result?.content?.[0]?.text || "{}"); } catch { return null; } })();
+            if (inner) yield { type: "result", result: inner as RunSecureWorkflowResponse };
+          } else if (payload?.error) {
+            yield { type: "error", code: payload.error.code, message: payload.error.message };
+          }
+        }
+      }
+    } finally {
+      reader.releaseLock();
+    }
+  }
+
+  /**
    * Send an x402 payment on any of 18 supported chains. Pass an idempotency_key
    * (or X-Idempotency-Key header) to safely retry — replays return the original
    * receipt with idempotency_replay:true.

@@ -1,6 +1,6 @@
 {
   "name": "yieldagentx402",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "Typed TypeScript SDK for YieldAgentX402 — custody-free, policy-gated, receipt-backed agent execution across 18 chains. Wraps the MCP gateway with first-class types for all 16 tools, idempotency, webhook verification, and Shade Agent wallet helpers. Zero runtime deps (uses fetch + WebCrypto).",
   "type": "module",
   "main": "./dist/index.js",
