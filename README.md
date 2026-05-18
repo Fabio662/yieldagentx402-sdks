@@ -16,6 +16,7 @@ This repo hosts the open-source distribution packages. The platform itself (gate
 | [`mcp-server/`](./mcp-server) | npm: [`agentx402-mcp-server`](https://www.npmjs.com/package/agentx402-mcp-server) | Stdio MCP wrapper. Drop into Claude Desktop / Code / Cursor / Windsurf to give any MCP client all 16 YieldAgentX402 tools across 18 chains. |
 | [`verify-lib/`](./verify-lib) | npm: [`yieldagentx402-verify`](https://www.npmjs.com/package/yieldagentx402-verify) | Zero-dependency WebCrypto verifier for receipts + webhook signatures. Works in browser, Node 18+, Cloudflare Workers, Deno. |
 | [`crewai-tools/`](./crewai-tools) | PyPI: [`crewai-yieldagentx402-tools`](https://pypi.org/project/crewai-yieldagentx402-tools/) | CrewAI tool wrappers — policy dry-run, x402 payment, secure workflow, receipt verify, Shade Agent MPC wallet status. |
+| [`langchain-tools/`](./langchain-tools) | PyPI: [`yieldagentx402-langchain`](https://pypi.org/project/yieldagentx402-langchain/) | LangChain tool wrappers — discovery, policy preview, receipt verify, action planner (MCP gateway). |
 
 ---
 

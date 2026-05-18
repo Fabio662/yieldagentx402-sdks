@@ -1,0 +1,41 @@
+[build-system]
+requires = ["hatchling>=1.25"]
+build-backend = "hatchling.build"
+
+[project]
+name = "yieldagentx402-langchain"
+version = "0.1.3"
+description = "LangChain tools for policy-gated YieldAgentX402 execution — discovery, policy preview, receipt verification via the live MCP gateway. Proof: 16 tools, 18 chains, no custody, signed receipts."
+readme = "README.md"
+requires-python = ">=3.9"
+license = { text = "MIT" }
+authors = [{ name = "YieldAgentX402", email = "security@yieldagentx402.app" }]
+keywords = ["langchain", "langchain-core", "yieldagentx402", "x402", "ai-agents", "receipts", "policy", "mcp"]
+classifiers = [
+  "Development Status :: 4 - Beta",
+  "Intended Audience :: Developers",
+  "License :: OSI Approved :: MIT License",
+  "Programming Language :: Python :: 3",
+  "Topic :: Software Development :: Libraries :: Python Modules",
+]
+dependencies = [
+  "langchain-core>=0.3.0",
+  "pydantic>=2.0",
+  "requests>=2.31",
+]
+
+[project.urls]
+Homepage      = "https://yieldagentx402.app"
+Documentation = "https://yieldagentx402.app/mcp-server"
+Discovery     = "https://yieldagentx402.app/.well-known/mcp.json"
+Repository    = "https://github.com/Fabio662/yieldagentx402-sdks"
+Issues        = "https://github.com/Fabio662/yieldagentx402-sdks/issues"
+"Try It Now"  = "https://api.yieldagentx402.app/api/agent-onboard"
+"Instant Test Key" = "https://api.yieldagentx402.app/api/apply"
+Privacy       = "https://yieldagentx402.app/privacy"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/yieldagentx402_langchain"]
+
+[tool.hatch.build.targets.wheel.sources]
+"src" = ""
