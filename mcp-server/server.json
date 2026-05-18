@@ -1,19 +1,19 @@
 {
   "$schema": "https://static.modelcontextprotocol.io/schemas/2025-12-11/server.schema.json",
   "name": "io.github.Fabio662/yieldagentx402",
-  "description": "Authenticated stdio wrapper for the public YieldAgentX402 MCP endpoint.",
+  "description": "The execution layer for AI agent commerce. 100+ DeFi adapters across 20+ chains (BTC, EVM, Starknet via NEAR MPC) with signed receipts on every action. The full loop: discover skills, pay via x402, run under ShadeGuard policy + Intel TDX TEE, receive Filecoin-anchored proofs. DeFi yields, payments, lead scoring, AR aging. No custody.",
   "repository": {
     "url": "https://github.com/Fabio662/yieldagentx402-sdks",
     "source": "github",
     "subfolder": "mcp-server"
   },
   "websiteUrl": "https://yieldagentx402.app/mcp-server",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "packages": [
     {
       "registryType": "npm",
       "identifier": "agentx402-mcp-server",
-      "version": "1.0.3",
+      "version": "1.0.4",
       "transport": {
         "type": "stdio"
       },
