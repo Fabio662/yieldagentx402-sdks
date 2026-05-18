@@ -1,0 +1,83 @@
+{
+  "name": "YieldAgentX402",
+  "description": "Policy-gated, receipt-backed execution for AI agents. ShadeGuard enforces policy before funds move; x402 settles payments on 18 chains; every governed run returns HMAC-SHA256 receipts with optional Filecoin anchoring. Custody-free NEAR MPC wallets. Sixteen MCP tools via Streamable HTTP; public discovery with yax_get_capabilities (no API key).",
+  "version": "1.0.2",
+  "documentationUrl": "https://yieldagentx402.app/mcp-server",
+  "provider": {
+    "organization": "YieldAgentX402",
+    "url": "https://yieldagentx402.app"
+  },
+  "supportedInterfaces": [
+    {
+      "url": "https://api.yieldagentx402.app/mcp",
+      "protocolBinding": "HTTP+JSON",
+      "protocolVersion": "2025-03-26"
+    }
+  ],
+  "capabilities": {
+    "streaming": true,
+    "pushNotifications": true,
+    "extendedAgentCard": false
+  },
+  "defaultInputModes": ["application/json"],
+  "defaultOutputModes": ["application/json"],
+  "securitySchemes": {
+    "bearerAuth": {
+      "type": "http",
+      "scheme": "bearer",
+      "description": "YieldAgentX402 API key from https://yieldagentx402.app/apply"
+    }
+  },
+  "securityRequirements": [
+    { "bearerAuth": [] }
+  ],
+  "skills": [
+    {
+      "id": "discovery",
+      "name": "Platform discovery",
+      "description": "Public capabilities, rate limits, fees, chains, and onboarding URLs via yax_get_capabilities.",
+      "tags": ["discovery", "mcp", "onboarding"],
+      "examples": ["List all MCP tools and supported chains without an API key."]
+    },
+    {
+      "id": "policy-gated-execution",
+      "name": "Policy-gated execution",
+      "description": "ShadeGuard policy preview and governed workflows before payments or sensitive actions.",
+      "tags": ["policy", "shadeguard", "approval", "workflow"],
+      "examples": ["Dry-run a payment intent before execution.", "Run a secure workflow with approval gates."]
+    },
+    {
+      "id": "x402-payments",
+      "name": "x402 payments",
+      "description": "Machine-verifiable payments and settlement across supported chains with protocol fee disclosure.",
+      "tags": ["x402", "payments", "defi", "settlement"],
+      "examples": ["Process an x402 payment with idempotency and receipt."]
+    },
+    {
+      "id": "receipt-verification",
+      "name": "Receipt verification",
+      "description": "Verify signed receipts and Filecoin anchor status for audit and compliance.",
+      "tags": ["receipts", "audit", "filecoin", "verification"],
+      "examples": ["Verify a run receipt by run_id."]
+    },
+    {
+      "id": "tee-attestation",
+      "name": "TEE attestation",
+      "description": "Intel TDX / NEAR AI Cloud TEE status and enclave attestation reports.",
+      "tags": ["tee", "attestation", "security"],
+      "examples": ["Fetch TEE report for a governed execution."]
+    }
+  ],
+  "extensions": [
+    {
+      "uri": "https://modelcontextprotocol.io/specification/2025-03-26",
+      "description": "Model Context Protocol (MCP) Streamable HTTP transport",
+      "required": false
+    },
+    {
+      "uri": "https://yieldagentx402.app/.well-known/x402",
+      "description": "x402 payment manifest and protocol metadata",
+      "required": false
+    }
+  ]
+}
