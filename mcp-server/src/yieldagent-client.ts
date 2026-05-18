@@ -52,6 +52,15 @@ export class YieldAgentMcpClient {
   }
 
   async callTool(params: CallToolRequest["params"]) {
+    if (this.config.introspectionOnly && !this.config.apiKey) {
+      const name = params?.name ?? "";
+      if (name !== "yax_get_capabilities") {
+        throw new Error(
+          "YAX_API_KEY is required for tools/call (except yax_get_capabilities). Get a key at https://yieldagentx402.app/apply."
+        );
+      }
+    }
+
     const client = await this.connectedClient();
     return client.callTool(params);
   }

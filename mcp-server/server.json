@@ -3,17 +3,17 @@
   "name": "io.github.Fabio662/yieldagentx402",
   "description": "Authenticated stdio wrapper for the public YieldAgentX402 MCP endpoint.",
   "repository": {
-    "url": "https://github.com/Fabio662/Yieldagenticx402-Hub",
+    "url": "https://github.com/Fabio662/yieldagentx402-sdks",
     "source": "github",
-    "subfolder": "integrations/mcp-server"
+    "subfolder": "mcp-server"
   },
   "websiteUrl": "https://yieldagentx402.app/mcp-server",
-  "version": "1.0.0",
+  "version": "1.0.3",
   "packages": [
     {
       "registryType": "npm",
       "identifier": "agentx402-mcp-server",
-      "version": "1.0.1",
+      "version": "1.0.3",
       "transport": {
         "type": "stdio"
       },

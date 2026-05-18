@@ -4,7 +4,15 @@ export type YieldAgentConfig = {
   endpoint: URL;
   apiKey: string;
   agentId?: string;
+  /** Glama/registry sandboxes: tools/list without a key; tools/call still needs YAX_API_KEY. */
+  introspectionOnly: boolean;
 };
+
+function isTruthyEnv(value: string | undefined): boolean {
+  if (!value) return false;
+  const v = value.trim().toLowerCase();
+  return v === "1" || v === "true" || v === "yes";
+}
 
 export function loadConfig(env: NodeJS.ProcessEnv = process.env): YieldAgentConfig {
   const endpoint = new URL(
@@ -12,14 +20,16 @@ export function loadConfig(env: NodeJS.ProcessEnv = process.env): YieldAgentConf
   );
   const apiKey = env.YAX_API_KEY ?? "";
   const agentId = env.YAX_AGENT_ID;
+  const introspectionOnly =
+    isTruthyEnv(env.YAX_ALLOW_PUBLIC_INTROSPECTION) || isTruthyEnv(env.GLAMA);
 
-  if (!apiKey) {
+  if (!apiKey && !introspectionOnly) {
     throw new Error(
       "YAX_API_KEY is required. Get a key at https://yieldagentx402.app/apply."
     );
   }
 
-  return { endpoint, apiKey, agentId };
+  return { endpoint, apiKey, agentId, introspectionOnly };
 }
 
 function buildEndpointFromApiBase(apiBase: string | undefined): string {
@@ -34,8 +44,12 @@ function buildEndpointFromApiBase(apiBase: string | undefined): string {
 }
 
 export function authHeaders(config: YieldAgentConfig): HeadersInit {
-  return {
-    Authorization: `Bearer ${config.apiKey}`,
-    ...(config.agentId ? { "X-Agent-ID": config.agentId } : {}),
-  };
+  const headers: Record<string, string> = {};
+  if (config.apiKey) {
+    headers.Authorization = `Bearer ${config.apiKey}`;
+  }
+  if (config.agentId) {
+    headers["X-Agent-ID"] = config.agentId;
+  }
+  return headers;
 }

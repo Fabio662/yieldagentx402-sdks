@@ -1,7 +1,9 @@
 # agentx402-mcp-server
 
-> **Custody-free, policy-gated, receipt-backed execution layer for AI agents.**
-> Thin stdio wrapper for the live YieldAgentX402 MCP endpoint — **16 tools, 18 chains, signed receipts on every call.**
+> **Policy-gated, receipt-backed x402 execution for AI agents** — ShadeGuard before funds move, TEE-attested runs, verifiable proof.
+> Thin stdio wrapper for the live YieldAgentX402 MCP endpoint.
+>
+> **Proof:** 16 tools · 18 chains · no custody · signed receipts on every call.
 
 [Docs](https://yieldagentx402.app/mcp-server) · [Try without signup](#try-it-now-no-signup) · [Get API Key](https://yieldagentx402.app/apply) · [What is x402?](https://yieldagentx402.app/what-is-x402)
 
@@ -18,7 +20,7 @@ curl -X POST https://api.yieldagentx402.app/mcp \
        "params":{"name":"yax_get_capabilities","arguments":{}}}'
 ```
 
-Returns: all 16 tools, 4 differentiators, security posture, supported chains, and live infra status.
+Returns: differentiators (pitch), proof_points (16 tools · 18 chains · no custody · signed receipts), security posture, and live infra status.
 
 ---
 
@@ -45,7 +47,7 @@ Get an API key at **https://yieldagentx402.app/apply** (or call `POST /api/agent
 
 ---
 
-## 16 tools, 4 categories
+## Tools (16) — 4 categories
 
 | Category | Tools |
 |---|---|
@@ -91,7 +93,7 @@ Live manifest: https://shade-agent-worker.cryptoblac.workers.dev/api/wallet
 ## Registry
 
 - **npm:** `agentx402-mcp-server` (this package)
-- **Smithery:** [`fabianjefferson2/agentx402-mcp-server`](https://smithery.ai/servers/fabianjefferson2/agentx402-mcp-server) — 16 tools, live gateway
+- **Smithery:** [`fabianjefferson2/agentx402-mcp-server`](https://smithery.ai/servers/fabianjefferson2/agentx402-mcp-server) — direct gateway listing
 - **Remote endpoint:** `https://api.yieldagentx402.app/mcp` (Streamable HTTP, MCP 2025-03-26)
 - **x402scan:** [server/ddec8170…](https://www.x402scan.com/server/ddec8170-b8be-406e-98bb-b67a32c8a4c0) — 34 resources, live transactions
 - **ERC-8004 on Base:** `#21702` (separate from Stacks #32 / TRON #1)

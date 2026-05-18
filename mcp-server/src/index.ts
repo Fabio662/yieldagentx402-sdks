@@ -11,7 +11,7 @@ import {
 import { loadConfig } from "./config.js";
 import { YieldAgentMcpClient } from "./yieldagent-client.js";
 
-const PACKAGE_VERSION = "1.0.0";
+const PACKAGE_VERSION = "1.0.3";
 
 function toMcpError(error: unknown): McpError {
   if (error instanceof McpError) return error;
