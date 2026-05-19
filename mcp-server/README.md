@@ -7,6 +7,8 @@
 
 [Docs](https://yieldagentx402.app/mcp-server) · [Try without signup](#try-it-now-no-signup) · [Get API Key](https://yieldagentx402.app/apply) · [What is x402?](https://yieldagentx402.app/what-is-x402)
 
+[![yieldagentx402-sdks MCP server](https://glama.ai/mcp/servers/Fabio662/yieldagentx402-sdks/badges/score.svg)](https://glama.ai/mcp/servers/Fabio662/yieldagentx402-sdks)
+
 ---
 
 ## Try it now (no signup)
@@ -47,14 +49,14 @@ Get an API key at **https://yieldagentx402.app/apply** (or call `POST /api/agent
 
 ---
 
-## Tools (16) — 4 categories
+## Tools (18)
 
 | Category | Tools |
 |---|---|
 | **Discovery** *(public, no auth)* | `yax_get_capabilities` |
-| **Wallet & custody** | `yax_get_wallet_status` — returns Shade Agent MPC addresses on EVM + BTC + Starknet |
+| **Wallet & custody** | `yax_get_wallet_status` |
 | **Execution** | `yax_run_secure_workflow`, `yax_process_x402_payment` |
-| **Policy & governance** | `yax_check_policy`, `yax_run_compliance_monitor`, `yax_get_attestation` |
+| **Policy & governance** | `yax_check_policy`, `yax_submit_approval`, `yax_control_workflow`, `yax_audit_compliance`, `yax_get_attestation` |
 | **Receipts & audit** | `yax_get_receipt`, `yax_verify_receipt`, `yax_list_runs` |
 | **Workflows** | `yax_score_leads`, `yax_enrich_lead_data`, `yax_build_email_sequence`, `yax_monitor_churn_risk`, `yax_collect_ar_invoices`, `yax_forecast_cash_flow` |
 
@@ -92,11 +94,12 @@ Live manifest: https://shade-agent-worker.cryptoblac.workers.dev/api/wallet
 
 ## Registry
 
-- **npm:** `agentx402-mcp-server` (this package)
-- **Smithery:** [`fabianjefferson2/agentx402-mcp-server`](https://smithery.ai/servers/fabianjefferson2/agentx402-mcp-server) — direct gateway listing
+- **Official MCP Registry:** `io.github.Fabio662/yieldagentx402` **v1.0.4**
+- **Glama:** [Fabio662/yieldagentx402-sdks](https://glama.ai/mcp/servers/Fabio662/yieldagentx402-sdks) — release **0.1.2**, tool quality scored
+- **npm:** `agentx402-mcp-server@1.0.4` (this package)
+- **Smithery:** [`fabianjefferson2/agentx402-mcp-server`](https://smithery.ai/servers/fabianjefferson2/agentx402-mcp-server)
 - **Remote endpoint:** `https://api.yieldagentx402.app/mcp` (Streamable HTTP, MCP 2025-03-26)
-- **x402scan:** [server/ddec8170…](https://www.x402scan.com/server/ddec8170-b8be-406e-98bb-b67a32c8a4c0) — 34 resources, live transactions
-- **ERC-8004 on Base:** `#21702` (separate from Stacks #32 / TRON #1)
+- **x402scan:** [server/ddec8170…](https://www.x402scan.com/server/ddec8170-b8be-406e-98bb-b67a32c8a4c0)
 - **Status:** [api.yieldagentx402.app/api/status](https://api.yieldagentx402.app/api/status)
 
 ---

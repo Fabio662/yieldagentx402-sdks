@@ -4,6 +4,8 @@
 
 [Platform](https://yieldagentx402.app) · [MCP Docs](https://yieldagentx402.app/mcp-server) · [Try without signup](#try-without-signup) · [Get API key](https://yieldagentx402.app/apply)
 
+[![yieldagentx402-sdks MCP server](https://glama.ai/mcp/servers/Fabio662/yieldagentx402-sdks/badges/score.svg)](https://glama.ai/mcp/servers/Fabio662/yieldagentx402-sdks)
+
 This repo hosts the open-source distribution packages. The platform itself (gateway, ShadeGuard policy engine, TEE attestation, orchestrator, Filecoin/BTFS anchoring) lives in a separate private repository — we ship the bits agents need to *use* the platform here.
 
 ---
@@ -12,8 +14,8 @@ This repo hosts the open-source distribution packages. The platform itself (gate
 
 | Package | Registry | What it does |
 |---|---|---|
-| [`sdk-ts/`](./sdk-ts) | npm: [`yieldagentx402`](https://www.npmjs.com/package/yieldagentx402) | **Typed TypeScript SDK.** Wraps all 16 MCP tools with first-class types, idempotency, webhook verify, Shade Agent helpers. Zero deps. Works in Node, browsers, Workers, Deno, Bun. |
-| [`mcp-server/`](./mcp-server) | npm: [`agentx402-mcp-server`](https://www.npmjs.com/package/agentx402-mcp-server) | Stdio MCP wrapper. Drop into Claude Desktop / Code / Cursor / Windsurf to give any MCP client all 16 YieldAgentX402 tools across 18 chains. |
+| [`sdk-ts/`](./sdk-ts) | npm: [`yieldagentx402`](https://www.npmjs.com/package/yieldagentx402) | **Typed TypeScript SDK.** Wraps all **18** MCP tools with first-class types, idempotency, webhook verify, Shade Agent helpers. Zero deps. Works in Node, browsers, Workers, Deno, Bun. |
+| [`mcp-server/`](./mcp-server) | npm: [`agentx402-mcp-server`](https://www.npmjs.com/package/agentx402-mcp-server) | Stdio MCP wrapper. Drop into Claude Desktop / Code / Cursor / Windsurf for all **18** YieldAgentX402 tools across **18** chains. **Glama:** [listing](https://glama.ai/mcp/servers/Fabio662/yieldagentx402-sdks). |
 | [`verify-lib/`](./verify-lib) | npm: [`yieldagentx402-verify`](https://www.npmjs.com/package/yieldagentx402-verify) | Zero-dependency WebCrypto verifier for receipts + webhook signatures. Works in browser, Node 18+, Cloudflare Workers, Deno. |
 | [`crewai-tools/`](./crewai-tools) | PyPI: [`crewai-yieldagentx402-tools`](https://pypi.org/project/crewai-yieldagentx402-tools/) | CrewAI tool wrappers — policy dry-run, x402 payment, secure workflow, receipt verify, Shade Agent MPC wallet status. |
 | [`langchain-tools/`](./langchain-tools) | PyPI: [`yieldagentx402-langchain`](https://pypi.org/project/yieldagentx402-langchain/) | LangChain tool wrappers — discovery, policy preview, receipt verify, action planner (MCP gateway). |
@@ -29,7 +31,7 @@ curl -X POST https://api.yieldagentx402.app/mcp \
        "params":{"name":"yax_get_capabilities","arguments":{}}}'
 ```
 
-No API key required. Returns all 16 tools, 18 chains, rate limits, fees, supported runtime configs.
+No API key required. Returns all **18** tools, **18** chains, rate limits, fees, supported runtime configs.
 
 Want an instant test key?
 
@@ -47,7 +49,7 @@ Returns a `yax_test_*` key (5 USD cap, 7-day expiry) for safe read-only tools.
 
 A trust layer for agents that move money.
 
-- **16 MCP tools** — discovery, secure workflow execution, x402 payment settlement, policy dry-run, receipt verification, attestation, finance/CRM skill tools
+- **18 MCP tools** — discovery, secure workflow execution, x402 payment settlement, policy dry-run, approvals, receipt verification, attestation, finance/CRM skill tools
 - **18 chains** — Base, Ethereum, **Bitcoin (native)**, Starknet, NEAR, Solana, Stacks, BNB, Rootstock, Filecoin EVM + native, Aptos, Sui, TON, Tron, XRPL, Stellar, Algorand
 - **Custody-free wallet** — one NEAR MPC key authority derives EVM + BTC addresses on demand. No private keys held by the gateway or worker. Starknet uses Stark curve preset.
 - **Intel TDX TEE attestation** — mrEnclave verifiable at [`/api/tee/report`](https://api.yieldagentx402.app/api/tee/report)
