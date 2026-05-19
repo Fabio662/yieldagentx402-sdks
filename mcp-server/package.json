@@ -1,8 +1,8 @@
 {
   "name": "agentx402-mcp-server",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "mcpName": "io.github.Fabio662/yieldagentx402",
-  "description": "Policy-gated, receipt-backed x402 execution for AI agents — ShadeGuard before settlement, TEE-attested runs, Filecoin-anchored proof. Proof: 16 MCP tools, 18 chains, no custody, signed receipts. Public discovery: no signup.",
+  "description": "The execution layer for AI agent commerce. 100+ DeFi adapters across 20+ chains (BTC, EVM, Starknet via NEAR MPC) with signed receipts on every action. The full loop: discover skills, pay via x402, run under ShadeGuard policy + Intel TDX TEE, receive Filecoin-anchored proofs. DeFi yields, payments, lead scoring, AR aging. No custody.",
   "keywords": [
     "mcp",
     "model-context-protocol",

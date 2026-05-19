@@ -3,7 +3,7 @@
 > **Policy-gated, receipt-backed x402 execution for AI agents** — ShadeGuard before funds move, TEE-attested runs, verifiable proof.
 > Thin stdio wrapper for the live YieldAgentX402 MCP endpoint.
 >
-> **Proof:** 16 tools · 18 chains · no custody · signed receipts on every call.
+> **Proof:** 18 tools · 18 chains · no custody · signed receipts on every call.
 
 [Docs](https://yieldagentx402.app/mcp-server) · [Try without signup](#try-it-now-no-signup) · [Get API Key](https://yieldagentx402.app/apply) · [What is x402?](https://yieldagentx402.app/what-is-x402)
 
@@ -20,7 +20,7 @@ curl -X POST https://api.yieldagentx402.app/mcp \
        "params":{"name":"yax_get_capabilities","arguments":{}}}'
 ```
 
-Returns: differentiators (pitch), proof_points (16 tools · 18 chains · no custody · signed receipts), security posture, and live infra status.
+Returns: differentiators (pitch), proof_points (18 tools · 18 chains · no custody · signed receipts), security posture, and live infra status.
 
 ---
 
